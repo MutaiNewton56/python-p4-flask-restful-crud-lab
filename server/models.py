@@ -14,3 +14,13 @@ class Plant(db.Model, SerializerMixin):
 
     def __repr__(self):
         return f'<Plant {self.name} | In Stock: {self.is_in_stock}>'
+
+    def to_dict(self):
+        """Converts the Plant object to a dictionary."""
+        return {
+            'id': self.id,
+            'name': self.name,
+            'image': self.image,
+            'price': float(self.price),  # Convert to float for JSON serialization
+            'is_in_stock': self.is_in_stock
+        }
